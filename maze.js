@@ -21,4 +21,10 @@ for (let sign of multiline){
     else if(sign === 'T'){
         tiles.className = 'tile treasure';
     }
+
+    const spawn = document.createElement('div');
+    spawn.className = 'player';
+    if(sign === 'S'){
+        tiles.appendChild(spawn);
+    }
 }
