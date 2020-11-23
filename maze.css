@@ -1,0 +1,36 @@
+main{
+    width: calc(13*30px);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile{
+    width: 30px;
+    height: 30px;
+    background-color: firebrick;
+    border: 1px solid white;
+    box-sizing: border-box;
+}
+
+.wall{
+    background-color: grey;
+}
+
+.path{
+    background-color: lightgreen;
+}
+
+.start{
+    background-color: olivedrab;
+}
+
+.treasure{
+    background-color: gold;
+}
+
+.player{
+    background-color: sienna;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+}
