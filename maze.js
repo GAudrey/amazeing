@@ -1,12 +1,23 @@
 const main = document.querySelector('main');
 
-const multiline = '***********.**S.....**.*.T*****.....*.******.***.*.******.*****.******.*****.******.......******.********.........****.******...***....********';
+const multiline = `***********.*
+*S.....**.*.T
+*****.....*.*
+*****.***.*.*
+*****.*****.*
+*****.*****.*
+*****.......*
+*****.*******
+*.........***
+*.******...**
+*....********`;
 
-multiline.split('');
+multiline.split('\n');
+multiline[0].split('');
 
+// map
 for (let sign of multiline){
     const tiles = document.createElement('div');
-    tiles.className = 'tile';
     main.appendChild(tiles);
 
     if(sign === '*'){
@@ -21,10 +32,34 @@ for (let sign of multiline){
     else if(sign === 'T'){
         tiles.className = 'tile treasure';
     }
-
-    const spawn = document.createElement('div');
-    spawn.className = 'player';
-    if(sign === 'S'){
-        tiles.appendChild(spawn);
-    }
 }
+
+// pawn
+const pawn = document.createElement('div');
+pawn.className = 'player';
+document.querySelector("body > main > div:nth-child(16)").appendChild(pawn);
+
+// moves
+document.body.addEventListener('keyup', (e) =>{
+    let pos = 16;
+        
+    if(e.key === 'ArrowUp' || e.key === 'z'){
+        pos -= 14;
+        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+    }
+    else if(e.key === 'ArrowLeft' || e.key === 'q'){
+        pos--;
+        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+    }
+    else if(e.key === 'ArrowDown' || e.key === 's'){
+        pos += 14;
+        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+    }
+    else if(e.key === 'ArrowRight' || e.key === 'd'){
+        pos++;
+        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+    }
+    else if(e.key === 'r'){
+        document.querySelector("body > main > div:nth-child(16)").appendChild(pawn);
+    }
+})
