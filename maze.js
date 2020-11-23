@@ -39,10 +39,9 @@ const pawn = document.createElement('div');
 pawn.className = 'player';
 document.querySelector("body > main > div:nth-child(16)").appendChild(pawn);
 
+let pos = 16;
 // moves
 document.body.addEventListener('keyup', (e) =>{
-    let pos = 16;
-        
     if(e.key === 'ArrowUp' || e.key === 'z'){
         pos -= 14;
         document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
