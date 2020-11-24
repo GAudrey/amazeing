@@ -12,53 +12,90 @@ const multiline = `***********.*
 *.******...**
 *....********`;
 
-multiline.split('\n');
-multiline[0].split('');
+// multiline.split('\n');
+// multiline[0].split('');
 
 // map
 for (let sign of multiline){
+    if(sign !== '\n'){
     const tiles = document.createElement('div');
     main.appendChild(tiles);
-
-    if(sign === '*'){
-        tiles.className = 'tile wall';
-    }
-    else if(sign === '.'){
-        tiles.className = 'tile path';
-    }
-    else if(sign === 'S'){
-        tiles.className = 'tile start';
-    }
-    else if(sign === 'T'){
-        tiles.className = 'tile treasure';
+        if(sign === '*'){
+            tiles.className = 'tile wall';
+        }
+        else if(sign === '.'){
+            tiles.className = 'tile path';
+        }
+        else if(sign === 'S'){
+            tiles.className = 'tile start';
+        }
+        else if(sign === 'T'){
+            tiles.className = 'tile treasure';
+        }
     }
 }
 
 // pawn
 const pawn = document.createElement('div');
 pawn.className = 'player';
-document.querySelector("body > main > div:nth-child(16)").appendChild(pawn);
+document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
 
-let pos = 16;
+let pos = 15;
 // moves
 document.body.addEventListener('keyup', (e) =>{
     if(e.key === 'ArrowUp' || e.key === 'z'){
-        pos -= 14;
-        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+        if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
+            pawn.style.backgroundColor = 'red';
+        }
+        else if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('treasure')){
+            alert('Congrats');
+        }
+        else{
+            pos -= 13;
+            document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+            pawn.style.backgroundColor = 'darkmagenta';
+        }
     }
     else if(e.key === 'ArrowLeft' || e.key === 'q'){
-        pos--;
-        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+        if(document.querySelector('body > main > div:nth-child('+(pos-1)+')').classList.contains('wall')){
+            pawn.style.backgroundColor = 'red';
+        }
+        else if(document.querySelector('body > main > div:nth-child('+(pos-1)+')').classList.contains('treasure')){
+            alert('Congrats');
+        }
+        else{
+            pos--;
+            document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+            pawn.style.backgroundColor = 'darkmagenta';
+        }
     }
     else if(e.key === 'ArrowDown' || e.key === 's'){
-        pos += 14;
-        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+        if(document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('wall')){
+            pawn.style.backgroundColor = 'red';
+        }
+        else if(document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('treasure')){
+            alert('Congrats');
+        }
+        else{
+            pos += 13;
+            document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+            pawn.style.backgroundColor = 'darkmagenta';
+        }
     }
     else if(e.key === 'ArrowRight' || e.key === 'd'){
-        pos++;
-        document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+        if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('wall')){
+            pawn.style.backgroundColor = 'red';
+        }
+        else if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('treasure')){
+            alert('Congrats');
+        }
+        else{
+            pos++;
+            document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+        }
     }
-    else if(e.key === 'r'){
-        document.querySelector("body > main > div:nth-child(16)").appendChild(pawn);
+    if(e.key === 'r'){
+        pos = 15;
+        document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
     }
 })
