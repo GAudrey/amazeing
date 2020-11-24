@@ -38,3 +38,13 @@ main{
     height: 14px;
     border-radius: 100%;
 }
+
+.player-boum-transition{
+    background-color: darkmagenta;
+    border: 2px solid white;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    transition-duration: 2s;
+    transition-timing-function: ease;
+}

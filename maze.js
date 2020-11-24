@@ -48,6 +48,9 @@ document.body.addEventListener('keyup', (e) =>{
     if(e.key === 'ArrowUp' || e.key === 'z'){
         if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
             pawn.style.backgroundColor = 'red';
+            if(pawn.style.backgroundColor === 'red'){
+                pawn.className = 'player-boum-transition';
+            }
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('treasure')){
             alert('Congrats');
