@@ -15,7 +15,7 @@ const multiline = `***********.*
 // multiline.split('\n');
 // multiline[0].split('');
 
-// map
+// map design
 for (let sign of multiline){
     if(sign !== '\n'){
     const tiles = document.createElement('div');
@@ -40,12 +40,16 @@ const pawn = document.createElement('div');
 pawn.className = 'player';
 document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
 
+function boum(){
+    pawn.style.transition.begin(boum, ['background-color', 'red', 'darkmagenta', '2s', 'ease'])
+}
+
 let pos = 15;
 // moves
 document.body.addEventListener('keyup', (e) =>{
     if(e.key === 'ArrowUp' || e.key === 'z'){
         if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
-            pawn.style.backgroundColor = 'red';
+            boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('treasure')){
             alert('Congrats');
@@ -85,17 +89,23 @@ document.body.addEventListener('keyup', (e) =>{
     else if(e.key === 'ArrowRight' || e.key === 'd'){
         if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('wall')){
             pawn.style.backgroundColor = 'red';
+            console.log('Wall')
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('treasure')){
+            pos++;
+            document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             alert('Congrats');
         }
         else{
             pos++;
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
+            pawn.style.backgroundColor = 'darkmagenta';
+            console.log('Yes')
         }
     }
     if(e.key === 'r'){
         pos = 15;
         document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
+        pawn.style.backgroundColor = 'darkmagenta';
     }
 })

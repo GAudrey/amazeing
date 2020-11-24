@@ -8,7 +8,7 @@ main{
     width: 30px;
     height: 30px;
     background-color: firebrick;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -37,4 +37,22 @@ main{
     width: 14px;
     height: 14px;
     border-radius: 100%;
+}
+
+.player-boum{
+    background-color: red;
+    border: 2px solid white;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+}
+
+.player-boum-transition{
+    background-color: darkmagenta;
+    border: 2px solid white;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    transition-duration: 2s;
+    transition-timing-function: ease;
 }
