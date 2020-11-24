@@ -32,9 +32,18 @@ main{
 }
 
 .player{
-    background-color: darkmagenta;
     border: 2px solid white;
     width: 14px;
     height: 14px;
     border-radius: 100%;
+}
+
+.player-color{
+    background-color: darkmagenta;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+}
+
+.player-boum{
+    background-color: red;
 }
