@@ -40,9 +40,11 @@ const pawn = document.createElement('div');
 pawn.className = 'player';
 document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
 
-let pos = 15;
 // moves
+let pos = 15;
+
 document.body.addEventListener('keyup', (e) =>{
+    // up
     if(e.key === 'ArrowUp' || e.key === 'z'){
         if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
             pawn.style.backgroundColor = 'red';
@@ -56,6 +58,8 @@ document.body.addEventListener('keyup', (e) =>{
             pawn.style.backgroundColor = 'darkmagenta';
         }
     }
+
+    // left
     else if(e.key === 'ArrowLeft' || e.key === 'q'){
         if(document.querySelector('body > main > div:nth-child('+(pos-1)+')').classList.contains('wall')){
             pawn.style.backgroundColor = 'red';
@@ -69,6 +73,8 @@ document.body.addEventListener('keyup', (e) =>{
             pawn.style.backgroundColor = 'darkmagenta';
         }
     }
+
+    // down
     else if(e.key === 'ArrowDown' || e.key === 's'){
         if(document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('wall')){
             pawn.style.backgroundColor = 'red';
@@ -82,6 +88,8 @@ document.body.addEventListener('keyup', (e) =>{
             pawn.style.backgroundColor = 'darkmagenta';
         }
     }
+
+    // right
     else if(e.key === 'ArrowRight' || e.key === 'd'){
         if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('wall')){
             pawn.style.backgroundColor = 'red';
@@ -97,6 +105,8 @@ document.body.addEventListener('keyup', (e) =>{
             pawn.style.backgroundColor = 'darkmagenta';
         }
     }
+
+    // reset
     if(e.key === 'r'){
         pos = 15;
         document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
