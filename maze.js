@@ -44,7 +44,7 @@ document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
         pawn.className = 'player player-boum';
             setTimeout(()=>{
                 pawn.className = 'player player-color';
-            },1000)
+            },500)
     }
 
 // moves
