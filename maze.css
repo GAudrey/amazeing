@@ -32,19 +32,18 @@ main{
 }
 
 .player{
-    background-color: darkmagenta;
     border: 2px solid white;
     width: 14px;
     height: 14px;
     border-radius: 100%;
 }
 
-.player-boum-transition{
+.player-color{
     background-color: darkmagenta;
-    border: 2px solid white;
-    width: 14px;
-    height: 14px;
-    border-radius: 100%;
-    transition-duration: 2s;
+    transition-duration: 1s;
     transition-timing-function: ease;
+}
+
+.player-boum{
+    background-color: red;
 }
