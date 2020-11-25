@@ -36,6 +36,7 @@ for (let sign of multiline){
 const pawn = document.createElement('div');
 pawn.className = 'player player-color';
 document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
+
 // hit the wall
 function boum(){
     pawn.className = 'player player-boum';
