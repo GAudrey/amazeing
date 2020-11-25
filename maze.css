@@ -2,6 +2,7 @@ main{
     width: calc(13*30px);
     display: flex;
     flex-wrap: wrap;
+    margin: auto;
 }
 
 .tile{

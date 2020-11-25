@@ -42,9 +42,9 @@ document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
     // hit the wall
     function boum(){
         pawn.className = 'player player-boum';
-            setTimeout(()=>{
-                pawn.className = 'player player-color';
-            },500)
+        setTimeout(()=>{
+            pawn.className = 'player player-color';
+        },500)
     }
 
 // moves
@@ -53,8 +53,8 @@ let pos = 15;
 document.body.addEventListener('keyup', (e) =>{
     // up
     if(e.key === 'ArrowUp' || e.key === 'z'){
-        if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
-            boum()
+        if(pos == 12 || document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
+            return boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('treasure')){
             alert('Congrats');
@@ -64,6 +64,7 @@ document.body.addEventListener('keyup', (e) =>{
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             pawn.className = 'player player-color';
         }
+        console.log(pos)
     }
 
     // left
@@ -79,12 +80,13 @@ document.body.addEventListener('keyup', (e) =>{
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             pawn.className = 'player player-color';
         }
+        console.log(pos)
     }
 
     // down
     else if(e.key === 'ArrowDown' || e.key === 's'){
-        if(document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('wall')){
-            boum()
+        if(pos > 130 || document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('wall')){
+            return boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('treasure')){
             alert('Congrats');
@@ -94,12 +96,13 @@ document.body.addEventListener('keyup', (e) =>{
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             pawn.className = 'player player-color';
         }
+        console.log(pos)
     }
 
     // right
     else if(e.key === 'ArrowRight' || e.key === 'd'){
         if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('wall')){
-            boum()
+           boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('treasure')){
             pos++;
@@ -112,6 +115,7 @@ document.body.addEventListener('keyup', (e) =>{
             pawn.className = 'player player-color';
         }
     }
+    console.log(pos)
 
     // reset
     if(e.key === 'r'){
