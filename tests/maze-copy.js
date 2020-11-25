@@ -1,6 +1,6 @@
 const main = document.querySelector('main');
 
-const multiline = `***********.*
+const lvl1 = `***********.*
 *S.....**.*.T
 *****.....*.*
 *****.***.*.*
@@ -12,22 +12,52 @@ const multiline = `***********.*
 *.******...**
 *....********`;
 
+const lvl1Size = [lvl1.split('\n')][0]; // 1rst line of lvl1
+const lvl1SizeLine = lvl1Size[0].length; // 1rst line size
+
+const lvl2 = `**********************
+*..S.................*
+********************.*
+*....................*
+*.********************
+*...................T*`;
+
+const lvl2Size = [lvl2.split('\n')][0]; // 1rst line of lvl2
+const lvl2SizeLine = lvl2Size[0].length; // 1rst line size
+
+const lvl3 = `********
+****S***
+****.***
+****.***
+****.***
+*......*
+*.****.*
+*..***.*
+*..***.*
+**.*****
+*T.*****
+********`;
+
+const lvl3Size = [lvl3.split('\n')][0]; // 1rst line of lvl3
+const lvl3SizeLine = lvl3Size[0].length; // 1rst line size
+
 // map design
-for (let sign of multiline){
+for (let sign of lvl1){
     if(sign !== '\n'){
     const tiles = document.createElement('div');
+    tiles.className = 'tile'
     main.appendChild(tiles);
         if(sign === '*'){
-            tiles.className = 'tile wall';
+            tiles.className += ' wall';
         }
-        else if(sign === '.'){
-            tiles.className = 'tile path';
-        }
-        else if(sign === 'S'){
-            tiles.className = 'tile start';
-        }
-        else if(sign === 'T'){
-            tiles.className = 'tile treasure';
+        else{
+            tiles.className += ' path';
+            if(sign === 'S'){
+                tiles.className += ' start';
+            }
+            else if(sign === 'T'){
+                tiles.className += ' treasure';
+            }
         }
     }
 }
@@ -36,20 +66,13 @@ for (let sign of multiline){
 const pawn = document.createElement('div');
 pawn.className = 'player player-color';
 document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
-// hit the wall
-function boum(){
-    pawn.className = 'player player-boum';
-    setTimeout(()=>{
-        pawn.className = 'player player-color';
-    },500)
-}
-
-// return to square one
-function restart(){
-    pos = 15;
-    document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
-    pawn.className = 'player player-color';
-}
+    // hit the wall
+    function boum(){
+        pawn.className = 'player player-boum';
+        setTimeout(()=>{
+            pawn.className = 'player player-color';
+        },500)
+    }
 
 // moves
 let pos = 15;
@@ -57,74 +80,74 @@ let pos = 15;
 document.body.addEventListener('keyup', (e) =>{
     // up
     if(e.key === 'ArrowUp' || e.key === 'z'){
-        if(pos == 12 || document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
-            return boum()
+        if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('wall')){
+            boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos-13)+')').classList.contains('treasure')){
             alert('Congrats');
-            return restart();
         }
         else{
             pos -= 13;
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             pawn.className = 'player player-color';
         }
-        //console.log(pos)
+        console.log(pos)
     }
 
     // left
     else if(e.key === 'ArrowLeft' || e.key === 'q'){
         if(document.querySelector('body > main > div:nth-child('+(pos-1)+')').classList.contains('wall')){
-            return boum()
+            boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos-1)+')').classList.contains('treasure')){
             alert('Congrats');
-            return restart();
-                    }
+        }
         else{
             pos--;
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             pawn.className = 'player player-color';
         }
-        //console.log(pos)
+        console.log(pos)
     }
 
     // down
     else if(e.key === 'ArrowDown' || e.key === 's'){
-        if(pos > 130 || document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('wall')){
-            return boum()
+        if(document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('wall')){
+            boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos+13)+')').classList.contains('treasure')){
             alert('Congrats');
-            return restart();
         }
         else{
             pos += 13;
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             pawn.className = 'player player-color';
         }
-        //console.log(pos)
+        console.log(pos)
     }
 
     // right
     else if(e.key === 'ArrowRight' || e.key === 'd'){
-        if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('wall')){
-           return boum()
+        if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('wall') || document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('wall')){
+            boum()
         }
         else if(document.querySelector('body > main > div:nth-child('+(pos+1)+')').classList.contains('treasure')){
+            pos++;
+            document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             alert('Congrats');
-            return restart();
         }
         else{
             pos++;
             document.querySelector('body > main > div:nth-child('+pos+')').appendChild(pawn);
             pawn.className = 'player player-color';
         }
-        //console.log(pos)
+        console.log(pos)
     }
 
     // reset
     if(e.key === 'r'){
-        return restart();
+        pos = 15;
+        document.querySelector('body > main > div:nth-child(15)').appendChild(pawn);
+        pawn.className = 'player player-color';
     }
 })
