@@ -1,7 +1,6 @@
 # A-MAZEing
 *A pawn's quest to find a treasure (or the exit) in a maze.*
 
-## Github page
 [A-MAZEing](https://gaudrey.github.io/amazeing/)
 
 ![illu A-MAZEing lvl1](./readme/illu-maze.png)
